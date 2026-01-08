@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("What is the maximum score?: ");
+        int maximumScore = input.nextInt();
+
+        System.out.print("And out of " + maximumScore + ", how much did you get?: ");
+        int score = input.nextInt();
+
+        double percentage = (double) score / maximumScore * 100;
+        System.out.printf("Your percentage is: %.1f%%\n", percentage);
+
+        if (percentage >= 90) {
+            System.out.println("Your grade is A! Congratulations!");
+        } else if (percentage >= 80) {
+            System.out.println("Your grade is B! Congratulations!");
+        } else if (percentage >= 70) {
+            System.out.println("Your grade is C! Congratulations!");
+        } else if (percentage >= 60) {
+            System.out.println("Your grade is D! Remember, it's all about the progress, not perfection.");
+        } else {
+            System.out.println("Your grade is F. It's ok, do better next time.");
+        }
+        
+        input.close();
+    }
+}
