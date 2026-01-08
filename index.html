@@ -1,30 +1,44 @@
-import java.util.Scanner;
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grade Calculator</title>
+</head>
+<body>
 
-public class Main {
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
+    <h2>Grade Calculator</h2>
 
-        System.out.print("What is the maximum score?: ");
-        int maximumScore = input.nextInt();
+    <label>What is the maximum score?</label><br>
+    <input type="number" id="maxScore"><br><br>
 
-        System.out.print("And out of " + maximumScore + ", how much did you get?: ");
-        int score = input.nextInt();
+    <label>How much did you get?</label><br>
+    <input type="number" id="userScore"><br><br>
 
-        double percentage = (double) score / maximumScore * 100;
-        System.out.printf("Your percentage is: %.1f%%\n", percentage);
+    <button onclick="calculateGrade()">Calculate</button>
 
-        if (percentage >= 90) {
-            System.out.println("Your grade is A! Congratulations!");
-        } else if (percentage >= 80) {
-            System.out.println("Your grade is B! Congratulations!");
-        } else if (percentage >= 70) {
-            System.out.println("Your grade is C! Congratulations!");
-        } else if (percentage >= 60) {
-            System.out.println("Your grade is D! Remember, it's all about the progress, not perfection.");
-        } else {
-            System.out.println("Your grade is F. It's ok, do better next time.");
+    <h3 id="resultPercentage"></h3>
+    <p id="resultGrade"></p>
+
+    <script>
+        function calculateGrade() {
+            const maxScore = document.getElementById('maxScore').value;
+            const score = document.getElementById('userScore').value;
+            
+            if (maxScore > 0) {
+                const percentage = (score / maxScore) * 100;
+                document.getElementById('resultPercentage').innerText = 
+                    "Your percentage is: " + percentage.toFixed(1) + "%";
+
+                let message = "";
+                if (percentage >= 90) message = "Your grade is A! Congratulations!";
+                else if (percentage >= 80) message = "Your grade is B! Congratulations!";
+                else if (percentage >= 70) message = "Your grade is C! Congratulations!";
+                else if (percentage >= 60) message = "Your grade is D! Remember, it's all about the progress, not perfection.";
+                else message = "Your grade is F. It's ok, do better next time.";
+
+                document.getElementById('resultGrade').innerText = message;
+            }
         }
-        
-        input.close();
-    }
-}
+    </script>
+
+</body>
+</html>
